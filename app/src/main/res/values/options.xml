@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022 Mengran. All rights reserved.
+  -->
+
+<resources>
+    <string name="_when">当</string>
+    <string name="_if">如果</string>
+    <string name="_do">那么</string>
+    <string name="_and">并且</string>
+    <string name="_or">或者</string>
+
+    <string name="current_app">所处的应用</string>
+    <string name="current_top_app">当前所处应用</string>
+    <string name="current_notification">当前通知</string>
+    <string name="format_contains_ui_object">%s包含控件满足</string>
+    <string name="not_format_contains_ui_object">%s不包含控件满足</string>
+    <string name="current_time">当前时间</string>
+
+    <string name="package_name">包名</string>
+    <string name="component_info">应用和页面</string>
+
+    <string name="contains_text">包含指定文本</string>
+    <string name="not_contains_text">不包含指定文本</string>
+    <string name="in_app_collection">%s在应用名单中</string>
+    <string name="not_in_app_collection">%s不在应用名单中</string>
+    <string name="format_range">%s至%s</string>
+    <string name="to_lower_case">将英文字母全部转为小写</string>
+    <string name="trim">去除空格</string>
+    <string name="on_package_entered">进入应用程序时</string>
+    <string name="on_package_left">离开应用程序时</string>
+    <string name="on_content_changed">处于应用程序内</string>
+    <string name="invert">取反</string>
+    <string name="is_system_app">%s是系统应用</string>
+    <string name="not_is_system_app">%s不是系统应用</string>
+    <string name="is_launcher">%s是桌面</string>
+    <string name="not_is_launcher">%s不是桌面</string>
+
+    <string name="with_ui_object_type">控件类型为</string>
+    <string name="with_text">文本内容是</string>
+    <string name="not_with_text">文本内容不是</string>
+    <string name="in_length_range">文本长度范围</string>
+    <string name="content_desc">内容描述为</string>
+    <string name="is_clickable">可点击</string>
+    <string name="not_is_clickable">不可点击</string>
+    <string name="is_long_clickable">可长按</string>
+    <string name="not_is_long_clickable">不可长按</string>
+    <string name="is_editable">可编辑</string>
+    <string name="not_is_editable">不可编辑</string>
+    <string name="is_enabled">已启用</string>
+    <string name="not_is_enabled">未启用</string>
+    <string name="is_checkable">可勾选</string>
+    <string name="not_is_checkable">不可勾选</string>
+    <string name="is_checked">已被勾选</string>
+    <string name="not_is_checked">未被勾选</string>
+    <string name="is_selected">已被选中</string>
+    <string name="not_is_selected">未被选中</string>
+    <string name="is_scrollable">可滚动</string>
+    <string name="not_is_scrollable">不可滚动</string>
+    <string name="is_index">位置</string>
+    <string name="left_margin">左边距</string>
+    <string name="right_margin">右边距</string>
+    <string name="top_margin">上边距</string>
+    <string name="bottom_margin">下边距</string>
+    <string name="type">标识</string>
+    <string name="position">位置</string>
+    <string name="node_depth">在布局树中的深度</string>
+    <string name="node_index_in_tree">在布局树中的位置</string>
+    <string name="node_index_in_parent">在父布局中的位置</string>
+    <string name="with_ui_object_id">控件ID为</string>
+
+    <string name="in_time_range">在指定时间范围</string>
+    <string name="not_in_time_range">不在指定时间范围</string>
+    <string name="in_months">在指定月份内</string>
+    <string name="not_in_months">不在指定月份内</string>
+    <string name="in_day_of_month">在指定日期内</string>
+    <string name="not_in_day_of_month">不在指定日期内</string>
+    <string name="in_day_of_week">指定星期几</string>
+    <string name="not_in_day_of_week">排除星期几</string>
+    <string name="in_hour_min_sec_range">在指定时间范围（一天内）</string>
+    <string name="not_in_hour_min_sec_range">不在指定时间范围（一天内）</string>
+    <string name="property">属性</string>
+    <string name="in_activity_collection">%s处于指定页面</string>
+    <string name="not_in_activity_collection">%s不处于指定页面</string>
+
+    <string name="screen_orientation_portrait">屏幕处于竖屏状态</string>
+    <string name="not_screen_orientation_portrait">屏幕处于横屏状态</string>
+    <string name="is_charging">正在充电</string>
+    <string name="not_is_charging">未在充电</string>
+    <string name="in_battery_capacity_range">电池电量在指定范围内</string>
+    <string name="not_in_battery_capacity_range">电池电量不在指定范围内</string>
+
+    <string name="format_pkg_collection_desc">%s等共%d个应用程序</string>
+    <string name="format_act_collection_desc">已指定%d个页面</string>
+    <string name="format_clear_selected_pkg">清空共%d个应用程序</string>
+    <string name="format_clear_selected_act">清空共%d个页面</string>
+
+    <string name="global_actions">全局操作</string>
+    <string name="press_back">点击返回键</string>
+    <string name="press_recent">切换到最近使用应用</string>
+    <string name="press_home">回到桌面</string>
+    <string name="format_perform_input_text">向%s中输入%s</string>
+    <string name="perform_input_ref_text">匹配并输入文字(仅限文本框)</string>
+    <string name="force_stop_current_app">强行停止当前应用</string>
+
+    <string name="format_force_stop">强行停止%s</string>
+    <string name="format_launch">启动%s</string>
+    <string name="specified_app">指定应用</string>
+    <string name="launch_activity">启动指定页面</string>
+
+    <string name="format_click">点击%s</string>
+    <string name="specified_coordinate">指定坐标</string>
+
+    <string name="notification_contains">通知内容包含</string>
+    <string name="not_notification_contains">通知内容不包含</string>
+    <string name="in_notification_pkg_names">发送通知的应用是</string>
+    <string name="not_in_notification_pkg_names">发送通知的应用不是</string>
+    <string name="notification_matches">通知内容满足正则表达式</string>
+    <string name="not_notification_matches">通知内容不满足正则表达式</string>
+    <string name="on_status_bar_notification_received">收到状态栏通知时</string>
+    <string name="on_toast_notification_received">显示吐司通知时</string>
+    <string name="open_notification_shade">下拉通知栏</string>
+    <string name="lock_screen">熄灭屏幕</string>
+</resources>

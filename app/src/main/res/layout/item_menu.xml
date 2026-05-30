@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022 Mengran. All rights reserved.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/content"
+        style="@style/RtlOverlay.Widget.AppCompat.PopupMenuItem"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/dropdownListPreferredItemHeight"
+        android:background="?selectableItemBackground">
+
+        <!-- Icon will be inserted here. -->
+
+        <!-- The title and summary have some gap between them, and this 'group' should be centered
+        vertically. -->
+        <RelativeLayout
+            style="@style/RtlOverlay.Widget.AppCompat.PopupMenuItem.InternalGroup"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:duplicateParentState="true">
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/RtlOverlay.Widget.AppCompat.PopupMenuItem.Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:duplicateParentState="true"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:textAppearance="?attr/textAppearanceLargePopupMenu" />
+
+        </RelativeLayout>
+        <!-- Checkbox, and/or radio button will be inserted here. -->
+
+    </LinearLayout>
+</layout>

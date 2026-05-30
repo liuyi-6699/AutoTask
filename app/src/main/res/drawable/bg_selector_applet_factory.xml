@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2022 Mengran. All rights reserved.
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:enterFadeDuration="@integer/material_motion_duration_short_2" android:exitFadeDuration="@integer/material_motion_duration_short_2">
+    <item android:state_selected="true">
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <gradient android:endColor="?colorPrimaryContainer" android:startColor="@android:color/transparent" />
+                </shape>
+            </item>
+            <item android:width="4dp" android:gravity="end">
+                <shape android:shape="rectangle">
+                    <corners android:radius="2dp" />
+                    <solid android:color="?colorPrimary" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

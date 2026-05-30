@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022 Mengran. All rights reserved.
+  -->
+
+<resources>
+
+    <declare-styleable name="MaterialButtonSpreadContainer">
+        <attr name="spreadHorizontal" format="dimension" />
+        <attr name="spreadVertical" format="dimension" />
+        <attr name="spreadColor" format="dimension" />
+        <attr name="spreadCenterColor" format="color" />
+        <attr name="spreadAutoStart" format="boolean" />
+        <attr name="spreadStyle" format="enum">
+            <enum name="stroke" value="0" />
+            <enum name="fill" value="1" />
+        </attr>
+        <attr name="spreadCount" format="integer" />
+        <attr name="spreadDuration" format="integer" />
+        <attr name="spreadAlpha" format="float" />
+    </declare-styleable>
+    <declare-styleable name="LayoutInspectorView">
+        <attr name="inspectorStrokeWidthNormal" format="dimension" />
+        <attr name="inspectorStrokeWidthHighlight" format="dimension" />
+        <attr name="inspectorStrokeColorNormal" format="color" />
+        <attr name="inspectorStrokeColorHighlight" format="color" />
+        <attr name="inspectorCoordinateTextSize" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="WaveDivider">
+        <attr name="waveWidth" format="dimension" />
+        <attr name="waveStrokeWidth" format="dimension" />
+        <attr name="waveStrokeColor" format="color" />
+        <attr name="waveRunningColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="DrawBoundsFrameLayout">
+        <attr name="boundsStrokeWidth" format="dimension" />
+        <attr name="boundsStrokeColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="LineCounterView">
+        <attr name="lineCounterTextColor" format="reference|color" />
+        <attr name="lineCounterTextSize" format="reference|dimension" />
+    </declare-styleable>
+</resources>

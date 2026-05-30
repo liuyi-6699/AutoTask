@@ -1,0 +1,114 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dev.rikka.tools.refine'
+    id 'org.jetbrains.kotlin.plugin.serialization' version "$serialization_version"
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    signingConfigs {
+        mengran {
+            def localProperties = new Properties()
+            localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+            if (localProperties != null) {
+                storeFile file(localProperties['storeFile'])
+                storePassword localProperties['storePassword']
+                keyAlias localProperties['keyAlias']
+                keyPassword localProperties['keyPassword']
+            }
+        }
+    }
+    compileSdk compile_sdk_version
+
+    defaultConfig {
+        applicationId "top.xjunz.tasker"
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
+        versionCode 19
+        versionName "2.0.0"
+        if (gradle.startParameter.taskNames.any { it.toLowerCase().contains("debug") }) {
+            versionName += "-debug"
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "x86", "arm64-v8a", "x86_64"
+        }
+    }
+
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.mengran
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.mengran
+        }
+    }
+    buildFeatures {
+        dataBinding true
+        aidl true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
+    }
+
+    namespace 'top.xjunz.tasker'
+    lint {
+        disable 'NullSafeMutableLiveData'
+    }
+}
+
+dependencies {
+    compileOnly project(":hidden-apis")
+    implementation project(':tasker-engine')
+    implementation project(':coroutine-ui-automator')
+    implementation project(':shared-library')
+    implementation project(':ssl')
+
+    def appCenterSdkVersion = '5.0.2'
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+
+    // shizuku
+    implementation "dev.rikka.shizuku:api:$shizuku_version"
+    implementation "dev.rikka.shizuku:provider:$shizuku_version"
+    // ktx
+    implementation "androidx.core:core-ktx:$ktx_version"
+    implementation 'androidx.activity:activity-ktx:1.8.0'
+    implementation 'androidx.fragment:fragment-ktx:1.6.1'
+    // kt reflection
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    // design
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation 'com.google.android.material:material:1.10.0'
+    // coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+    // ktor
+    def ktor_version = '2.3.5'
+    implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
+    implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-cio:$ktor_version")
+    // lifecycle
+    def lifecycle_version = "2.6.2"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    // hidden api bypass
+    implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
+    // app icon loader
+    implementation 'me.zhanghai.android.appiconloader:appiconloader:1.5.0'
+    // test
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    // debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.10'
+}

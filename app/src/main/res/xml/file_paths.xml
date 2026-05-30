@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022 Mengran. All rights reserved.
+  -->
+
+<paths>
+    <cache-path
+        name="shared_files"
+        path="share/" />
+    <cache-path
+        name="crash_logs"
+        path="crash/" />
+</paths>

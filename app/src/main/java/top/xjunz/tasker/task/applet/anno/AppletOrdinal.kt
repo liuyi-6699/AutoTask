@@ -1,0 +1,19 @@
+/*
+ * Copyright (c) 2024 Mengran. All rights reserved.
+ */
+
+package top.xjunz.tasker.task.applet.anno
+
+/**
+ * |0000 0000|│|0000 0000|
+ * |  :----: |:----: | :----:  |
+ * |id|│|index|
+ *
+ * The first 8 bits of [ordinal] is the category id and the last 8 bits of [ordinal] is
+ * the index in the category.
+ *
+ * @author Mengran 2022/09/22
+ */
+@Retention(AnnotationRetention.RUNTIME)
+@Target(AnnotationTarget.FIELD)
+annotation class AppletOrdinal(val ordinal: Int)

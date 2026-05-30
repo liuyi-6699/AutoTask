@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022 Mengran. All rights reserved.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group_insertion">
+
+        <item android:title="@string/add_rules" />
+
+        <item
+            android:id="@+id/item_add_inside"
+            android:title="@string/add_inside" />
+        <item
+            android:id="@+id/item_add_before"
+            android:title="@string/add_before" />
+        <item
+            android:id="@+id/item_add_after"
+            android:title="@string/add_after" />
+
+    </group>
+    <item android:title="@string/operation" />
+    <item
+        android:id="@+id/item_split"
+        android:title="@string/split_merged_rules" />
+    <item
+        android:id="@+id/item_replace_with"
+        android:title="@string/replace_with" />
+    <item
+        android:id="@+id/item_edit"
+        android:title="@string/edit" />
+    <item
+        android:id="@+id/item_invert"
+        android:title="@string/invert" />
+    <item
+        android:id="@+id/item_remove"
+        android:title="@string/remove" />
+    <item
+        android:id="@+id/item_toggle_ability"
+        android:title="@string/disable" />
+    <item
+        android:id="@+id/item_select"
+        android:title="@string/select" />
+    <item
+        android:id="@+id/item_move"
+        android:title="@string/move" />
+    <item
+        android:id="@+id/item_add_comment"
+        android:title="@string/add_comment" />
+
+    <group android:id="@+id/group_more">
+        <item android:title="@string/more" />
+
+        <item
+            android:id="@+id/item_open_in_new"
+            android:title="@string/open_in_new" />
+    </group>
+</menu>

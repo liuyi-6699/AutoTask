@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022 Mengran. All rights reserved.
+  -->
+
+<resources>
+
+    <style name="TintedIcon">
+        <item name="android:padding">4dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="tint">?colorOnPrimary</item>
+        <item name="backgroundTint">?colorPrimary</item>
+        <item name="android:background">@drawable/bg_selectable_tinted_circle</item>
+    </style>
+</resources>

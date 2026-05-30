@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023 Mengran. All rights reserved.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layerType="hardware">
+
+        <top.xjunz.tasker.ui.widget.LayoutInspectorView
+            android:id="@+id/inspector_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layerType="hardware"
+            app:inspectorCoordinateTextSize="12sp"
+            app:inspectorStrokeColorHighlight="#FFFFFF00"
+            app:inspectorStrokeColorNormal="#FFFF0000"
+            app:inspectorStrokeWidthHighlight="2dp"
+            app:inspectorStrokeWidthNormal="1dp" />
+
+        <top.xjunz.tasker.ui.widget.GestureRecorderView
+            android:id="@+id/gesture_recorder_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_comp_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|top"
+            android:background="#80000000"
+            android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
+            android:textColor="@android:color/white"
+            tools:text="top.xjunz.tasker" />
+
+        <TextView
+            android:id="@+id/tv_toast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="48dp"
+            android:background="@drawable/bg_selectable_primary_surface"
+            android:elevation="2dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</layout>

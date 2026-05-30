@@ -1,0 +1,20 @@
+/*
+ * Copyright (c) 2024 Mengran. All rights reserved.
+ */
+
+package android.content;
+
+/**
+ * @author Mengran 2022/11/16
+ */
+public interface IClipboard {
+
+    void setPrimaryClip(android.content.ClipData clip, java.lang.String callingPackage, int userId);
+
+    abstract class Stub {
+
+        public static android.content.IClipboard asInterface(android.os.IBinder obj) {
+            throw new RuntimeException("Stub!");
+        }
+    }
+}
