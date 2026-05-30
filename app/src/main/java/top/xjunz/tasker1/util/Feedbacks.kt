@@ -67,7 +67,8 @@ object Feedbacks {
             .putExtra(Intent.EXTRA_EMAIL, arrayOf("liuyi615708@gmail.com"))
         app.launchIntentSafely(intent)
     }
-}
-fun addTelegram() {
-    app.viewUrlSafely("https://t.me/coloros_home")
+
+    fun addTelegram() {
+        app.viewUrlSafely("https://t.me/coloros_home")
+    }
 }
