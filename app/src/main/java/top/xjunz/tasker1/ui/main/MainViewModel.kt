@@ -153,6 +153,7 @@ class MainViewModel : ViewModel(), ServiceController.ServiceStateListener {
                 checkingForUpdatesError.value = R.string.format_request_failed.format(it.message)
             }
         }
+    }
     override fun onStartBinding() {
         isServiceBinding.postValue(true)
     }
