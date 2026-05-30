@@ -26,7 +26,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.shape.MaterialShapeDrawable
 import kotlinx.coroutines.launch
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
+import top.xjunz.tasker1.engine.dto.XTaskJson
 import kotlinx.serialization.json.decodeFromStream
 import top.xjunz.shared.trace.logcatStackTrace
 import top.xjunz.shared.utils.illegalArgument
@@ -441,14 +441,14 @@ class MainActivity : AppCompatActivity(), DialogStackManager.Callback {
             try {
                 runCatching {
                     contentResolver.openInputStream(uri)?.use {
-                        val dto = Json.decodeFromStream<XTaskDTO>(it)
+                        val dto = XTaskJson.decodeFromStream<XTaskDTO>(it)
                         tasks.add(dto.toXTask(AppletOptionFactory, true))
                     }
                 }.onFailure {
                     ZipInputStream(contentResolver.openInputStream(uri)).use {
                         var entry: ZipEntry? = it.nextEntry
                         while (entry != null) {
-                            val dto = Json.decodeFromStream<XTaskDTO>(it)
+                            val dto = XTaskJson.decodeFromStream<XTaskDTO>(it)
                             tasks.add(dto.toXTask(AppletOptionFactory, true))
                             entry = it.nextEntry
                         }
