@@ -13,5 +13,5 @@
     android:canTakeScreenshot="true"
     android:description="@string/accessibility_service_summary"
     android:notificationTimeout="10"
-    android:settingsActivity="top.xjunz.tasker.main.MainActivity"
+    android:settingsActivity="top.xjunz.tasker1.main.MainActivity"
     tools:ignore="UnusedAttribute" />

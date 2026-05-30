@@ -2,9 +2,9 @@
   <component name="EntryPointsManager">
     <list size="4">
       <item index="0" class="java.lang.String" itemvalue="androidx.annotation.Keep" />
-      <item index="1" class="java.lang.String" itemvalue="top.xjunz.tasker.annotation.Remote" />
-      <item index="2" class="java.lang.String" itemvalue="top.xjunz.tasker.annotation.RemoteOnly" />
-      <item index="3" class="java.lang.String" itemvalue="top.xjunz.tasker.task.anno.AppletCategory" />
+      <item index="1" class="java.lang.String" itemvalue="top.xjunz.tasker1.annotation.Remote" />
+      <item index="2" class="java.lang.String" itemvalue="top.xjunz.tasker1.annotation.RemoteOnly" />
+      <item index="3" class="java.lang.String" itemvalue="top.xjunz.tasker1.task.anno.AppletCategory" />
     </list>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />

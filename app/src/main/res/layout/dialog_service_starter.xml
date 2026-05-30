@@ -40,7 +40,7 @@
                 android:text="@string/service_not_started"
                 android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
-            <top.xjunz.tasker.ui.widget.MaterialButtonSpreadContainer
+            <top.xjunz.tasker1.ui.widget.MaterialButtonSpreadContainer
                 android:id="@+id/spread_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                     android:insetBottom="6dp"
                     android:text="@string/launch"
                     app:icon="@drawable/ic_baseline_play_arrow_24" />
-            </top.xjunz.tasker.ui.widget.MaterialButtonSpreadContainer>
+            </top.xjunz.tasker1.ui.widget.MaterialButtonSpreadContainer>
 
         </LinearLayout>
 

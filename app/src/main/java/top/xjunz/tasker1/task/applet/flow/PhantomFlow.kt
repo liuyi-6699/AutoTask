@@ -1,0 +1,28 @@
+/*
+ * Copyright (c) 2024 Mengran. All rights reserved.
+ */
+
+package top.xjunz.tasker1.task.applet.flow
+
+import android.annotation.SuppressLint
+import top.xjunz.shared.utils.unsupportedOperation
+import top.xjunz.tasker1.engine.applet.base.Flow
+import top.xjunz.tasker1.engine.runtime.TaskRuntime
+
+/**
+ * A flow which is intended to be merged into its parent flow. This flow only exists in edition time.
+ *
+ * @author Mengran 2022/11/10
+ */
+class PhantomFlow : Flow() {
+
+    override fun onPrepareApply(runtime: TaskRuntime) {
+        unsupportedOperation("PhantomFlow is not expected to be present in runtime!")
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun staticCheckMyself(): Int {
+        unsupportedOperation("PhantomFlow should be merged!")
+    }
+
+}

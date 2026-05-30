@@ -1,0 +1,31 @@
+/*
+ * Copyright (c) 2024 Mengran. All rights reserved.
+ */
+
+package top.xjunz.tasker1.task.applet.util
+
+import org.junit.Test
+
+
+/**
+ * @author Mengran 2023/01/22
+ */
+internal class IntValueUtilTest {
+
+    @Test
+    fun parseTime() {
+    }
+
+    @Test
+    fun composeTime() {
+        println(IntValueUtil.parseTime(IntValueUtil.composeTime(23,59,59)).joinToString())
+    }
+
+    @Test
+    fun parseCoordinate() {
+    }
+
+    @Test
+    fun composeCoordinate() {
+    }
+}

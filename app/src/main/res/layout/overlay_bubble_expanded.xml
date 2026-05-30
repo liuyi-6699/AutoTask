@@ -5,7 +5,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <top.xjunz.tasker.ui.widget.FloatingDraggableLayout
+    <top.xjunz.tasker1.ui.widget.FloatingDraggableLayout
         android:id="@+id/draggable_root"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         android:padding="4dp"
         android:visibility="gone">
 
-        <top.xjunz.tasker.ui.widget.GamePadLayout
+        <top.xjunz.tasker1.ui.widget.GamePadLayout
             android:id="@+id/game_pad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                 style="@style/BubbleButton"
                 android:src="@drawable/ic_baseline_keyboard_arrow_down_24" />
 
-        </top.xjunz.tasker.ui.widget.GamePadLayout>
+        </top.xjunz.tasker1.ui.widget.GamePadLayout>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_toolbar"
@@ -116,5 +116,5 @@
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-    </top.xjunz.tasker.ui.widget.FloatingDraggableLayout>
+    </top.xjunz.tasker1.ui.widget.FloatingDraggableLayout>
 </layout>

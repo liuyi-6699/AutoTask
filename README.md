@@ -1,7 +1,7 @@
 
 # AutoTask
 
-一款支持[Shizuku](https://github.com/RikkaApps/Shizuku)和辅助功能的**自动任务**工具，[点击下载体验最新版](https://github.com/Mengran/AutoTask/releases)。
+一款支持[Shizuku](https://github.com/RikkaApps/Shizuku)和辅助功能的**自动任务**工具，[点击下载体验最新版](https://github.com/liuyi-6699/AutoTask/releases)。
 
 ## 简介
 
@@ -24,12 +24,12 @@
 
 ### Shizuku模式
 
-利用Shizuku授予特权，使用安卓内置的 [UiAutomation](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/app/UiAutomation.java)框架用于任务执行，详见 [ShizukuAutomatorService](https://github.com/Mengran/AutoTask/blob/master/app/src/main/java/top/xjunz/tasker/service/ShizukuAutomatorService.kt)。
+利用Shizuku授予特权，使用安卓内置的 [UiAutomation](https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/app/UiAutomation.java)框架用于任务执行，详见 [ShizukuAutomatorService](https://github.com/liuyi-6699/AutoTask/blob/master/app/src/main/java/top/xjunz/tasker/service/ShizukuAutomatorService.kt)。
 
 > **注: **因为安卓系统只能注册一个`UiAutomation`服务，所以当自动任务服务激活时，其他`UiAutomation`会注册失败。如果您有需要（如自动化测试、Thanox），请先停止自动任务服务。反之亦然。
 ### 辅助功能模式
 
-使用辅助功能自带的API框架用于实现任务执行，详见[A11yAutomatorService](https://github.com/Mengran/AutoTask/blob/master/app/src/main/java/top/xjunz/tasker/service/A11yAutomatorService.kt)。
+使用辅助功能自带的API框架用于实现任务执行，详见[A11yAutomatorService](https://github.com/liuyi-6699/AutoTask/blob/master/app/src/main/java/top/xjunz/tasker/service/A11yAutomatorService.kt)。
 
 ## 构建
 
@@ -48,6 +48,6 @@ keyPassword=xxx
 
 ## License
 
-本应用基于[Apache-2.0 License](https://github.com/Mengran/AutoTask/blob/master/LICENSE)开源，请在开源协议约束范围内使用源代码 。
+本应用基于[Apache-2.0 License](https://github.com/liuyi-6699/AutoTask/blob/master/LICENSE)开源，请在开源协议约束范围内使用源代码 。
 
 *Copyright 2024 Mengran*

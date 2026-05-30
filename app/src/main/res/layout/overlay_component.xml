@@ -6,7 +6,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <top.xjunz.tasker.ui.widget.FloatingDraggableLayout
+    <top.xjunz.tasker1.ui.widget.FloatingDraggableLayout
         android:id="@+id/draggable_root"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -22,5 +22,5 @@
             android:textColor="@android:color/white"
             tools:text="@tools:sample/lorem" />
 
-    </top.xjunz.tasker.ui.widget.FloatingDraggableLayout>
+    </top.xjunz.tasker1.ui.widget.FloatingDraggableLayout>
 </layout>

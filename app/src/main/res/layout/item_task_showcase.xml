@@ -100,7 +100,7 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_task_name"
                 app:layout_goneMarginEnd="16dp" />
 
-            <top.xjunz.tasker.ui.widget.WaveDivider
+            <top.xjunz.tasker1.ui.widget.WaveDivider
                 android:id="@+id/wave"
                 android:layout_width="match_parent"
                 android:layout_height="6dp"

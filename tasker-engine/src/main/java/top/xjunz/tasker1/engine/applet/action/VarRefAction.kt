@@ -1,0 +1,34 @@
+/*
+ * Copyright (c) 2024 Mengran. All rights reserved.
+ */
+
+package top.xjunz.tasker1.engine.applet.action
+
+import top.xjunz.shared.ktx.casted
+import top.xjunz.tasker1.engine.applet.base.AppletResult
+import top.xjunz.tasker1.engine.runtime.TaskRuntime
+
+/**
+ * @author Mengran 2023/09/26
+ */
+abstract class VarRefAction<V> : Action() {
+
+    final override suspend fun apply(runtime: TaskRuntime): AppletResult {
+        val refs = arrayOfNulls<Any?>(references.size)
+        references.keys.forEachIndexed { index, key ->
+            refs[index] = runtime.getReferenceArgument(this, key)
+        }
+        return doAction(values.getValue(0).casted(), refs, runtime)
+    }
+
+    abstract fun doAction(value: V, refs: Array<Any?>, runtime: TaskRuntime): AppletResult
+}
+
+fun <V> optimisticVarRefAction(block: (value: V, refs: Array<Any?>, runtime: TaskRuntime) -> Unit): Action {
+    return object : VarRefAction<V>() {
+        override fun doAction(value: V, refs: Array<Any?>, runtime: TaskRuntime): AppletResult {
+            block(value, refs, runtime)
+            return AppletResult.EMPTY_SUCCESS
+        }
+    }
+}

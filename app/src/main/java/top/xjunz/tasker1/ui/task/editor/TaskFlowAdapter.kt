@@ -1,0 +1,145 @@
+/*
+ * Copyright (c) 2024 Mengran. All rights reserved.
+ */
+
+package top.xjunz.tasker1.ui.task.editor
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import top.xjunz.tasker1.R
+import top.xjunz.tasker1.databinding.ItemFlowItemBinding
+import top.xjunz.tasker1.engine.applet.base.Applet
+import top.xjunz.tasker1.engine.applet.base.Flow
+import top.xjunz.tasker1.engine.applet.util.isContainer
+import top.xjunz.tasker1.engine.applet.util.isDescendantOf
+import top.xjunz.tasker1.ktx.alphaModified
+import top.xjunz.tasker1.ktx.notifySelfChanged
+import top.xjunz.tasker1.task.applet.option.AppletOption
+import top.xjunz.tasker1.ui.main.ColorScheme
+import top.xjunz.tasker1.util.ClickListenerUtil.setNoDoubleClickListener
+
+/**
+ * @author Mengran 2022/08/14
+ */
+class TaskFlowAdapter(fragment: FlowEditorDialog) :
+    ListAdapter<Applet, TaskFlowAdapter.FlowViewHolder>(FlowItemTouchHelperCallback.DiffCallback) {
+
+    private val viewModel: FlowEditorViewModel by fragment.viewModels()
+
+    private val itemViewBinder = FlowItemViewBinder(viewModel)
+
+    private val layoutInflater = LayoutInflater.from(fragment.requireContext())
+
+    val menuHelper = AppletOperationMenuHelper(viewModel, fragment.childFragmentManager)
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        if (viewModel.isReadyOnly) return
+        ItemTouchHelper(object : FlowItemTouchHelperCallback(recyclerView, viewModel) {
+
+            override fun onMoveEnded(hasDragged: Boolean, position: Int) {
+                if (position == RecyclerView.NO_POSITION) return
+                if (hasDragged) {
+                    // If dragged and it's the single selection, unselect it
+                    if (viewModel.selections.size != 1) return
+                    val selection = currentList[position]
+                    if (viewModel.selections.first() === selection)
+                        viewModel.multiUnselect(selection)
+                }
+            }
+
+            override fun shouldBeInvolvedInSwipe(next: Applet, origin: Applet): Boolean {
+                val isSelected = viewModel.isMultiSelected(origin)
+                if (isSelected) {
+                    return viewModel.isMultiSelected(next) || viewModel.selections.any {
+                        it.requiredIndex == -1 && it is Flow && next.isDescendantOf(it)
+                    }
+                }
+                return super.shouldBeInvolvedInSwipe(next, origin)
+            }
+
+            override fun doRemove(parent: Flow, from: Applet): Set<Applet> {
+                val removed = mutableSetOf<Applet>()
+                if (viewModel.isMultiSelected(from)) {
+                    viewModel.selections.forEach {
+                        if (it.requiredIndex == -1) {
+                            parent.remove(it)
+                            removed.add(it)
+                        }
+                    }
+                    if (viewModel.selections.removeAll(removed))
+                        viewModel.selectionLiveData.notifySelfChanged()
+                }
+                removed.addAll(super.doRemove(parent, from))
+                return removed
+            }
+        }).attachToRecyclerView(recyclerView)
+        // Always clear single selection on attached
+        viewModel.singleSelect(-1)
+    }
+
+    inner class FlowViewHolder(val binding: ItemFlowItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.tvTitle.setNoDoubleClickListener {
+                if (AppletOption.deliveringEvent == null) {
+                    binding.root.performClick()
+                }
+            }
+            binding.tvComment.setBackgroundColor(
+                ColorScheme.colorTertiaryContainer.alphaModified(.42F)
+            )
+            binding.root.setOnLongClickListener { true }
+            binding.root.setNoDoubleClickListener { view ->
+                val applet = currentList[adapterPosition]
+                if (viewModel.isSelectingReferent && !applet.isContainer) return@setNoDoubleClickListener
+                if (viewModel.isInMultiSelectionMode) {
+                    viewModel.toggleMultiSelection(applet)
+                } else {
+                    viewModel.singleSelect(adapterPosition)
+                    val popup = menuHelper.createStandaloneMenu(view, applet)
+                    popup.setOnDismissListener {
+                        viewModel.singleSelect(-1)
+                    }
+                    popup.show()
+                }
+            }
+            binding.ibAction.setNoDoubleClickListener {
+                val applet = currentList[adapterPosition]
+                when (it.tag as? Int) {
+                    FlowItemViewBinder.ACTION_COLLAPSE -> {
+                        viewModel.toggleCollapse(applet)
+                        notifyItemChanged(adapterPosition)
+                    }
+                    FlowItemViewBinder.ACTION_INVERT -> {
+                        applet.toggleInversion()
+                        notifyItemChanged(adapterPosition)
+                    }
+                    FlowItemViewBinder.ACTION_EDIT -> {
+                        menuHelper.triggerMenuItem(it, applet, R.id.item_edit)
+                    }
+                    FlowItemViewBinder.ACTION_ADD -> {
+                        menuHelper.triggerMenuItem(it, applet, R.id.item_add_inside)
+                    }
+                    FlowItemViewBinder.ACTION_ENTER -> {
+                        menuHelper.triggerMenuItem(it, applet, R.id.item_open_in_new)
+                    }
+                }
+            }
+        }
+    }
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlowViewHolder {
+        return FlowViewHolder(ItemFlowItemBinding.inflate(layoutInflater, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: FlowViewHolder, position: Int) {
+        itemViewBinder.bindViewHolder(holder, currentList[position])
+    }
+}

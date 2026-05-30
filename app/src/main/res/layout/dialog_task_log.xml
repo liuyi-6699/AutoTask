@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <top.xjunz.tasker.ui.widget.LineCounterView
+                <top.xjunz.tasker1.ui.widget.LineCounterView
                     android:id="@+id/line_counter"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"

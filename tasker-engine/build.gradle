@@ -28,7 +28,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    namespace 'top.xjunz.tasker.engine'
+    namespace 'top.xjunz.tasker1.engine'
     buildFeatures {
         aidl true
     }

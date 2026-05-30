@@ -1,0 +1,52 @@
+/*
+ * Copyright (c) 2024 Mengran. All rights reserved.
+ */
+
+package top.xjunz.tasker1.ui.task.selector.argument
+
+import android.os.Bundle
+import android.text.InputType
+import android.view.View
+import android.widget.EditText
+import top.xjunz.tasker1.R
+import top.xjunz.tasker1.ktx.setMaxLength
+import top.xjunz.tasker1.ktx.str
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Locale
+
+/**
+ * @author Mengran 2022/10/26
+ */
+class DateTimeRangeEditorDialog : RangeEditorDialog() {
+
+    override val bindingRequiredSuperClassDepth: Int = 2
+
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (!isUnaryRange) {
+            binding.tvSubtitleMin.text = R.string.start_time.str
+            binding.tvSubtitleMax.text = R.string.end_time.str
+        }
+    }
+
+    override fun String.toNumberOrNull(): Number? {
+        return try {
+            val date = dateFormat.parse(this)
+            date?.time
+        } catch (e: ParseException) {
+            null
+        }
+    }
+
+    override fun Number.toStringOrNull(): String? {
+        return dateFormat.format(this as Long)
+    }
+
+    override fun configEditText(et: EditText) {
+        et.setMaxLength(19)
+        et.inputType = InputType.TYPE_CLASS_DATETIME
+    }
+}

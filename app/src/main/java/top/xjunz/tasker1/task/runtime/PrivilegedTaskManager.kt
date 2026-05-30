@@ -1,0 +1,94 @@
+/*
+ * Copyright (c) 2024 Mengran. All rights reserved.
+ */
+
+package top.xjunz.tasker1.task.runtime
+
+import top.xjunz.tasker1.annotation.Privileged
+import top.xjunz.tasker1.engine.dto.XTaskDTO
+import top.xjunz.tasker1.engine.task.TaskManager
+import top.xjunz.tasker1.engine.task.TaskSnapshot
+import top.xjunz.tasker1.engine.task.XTask
+import top.xjunz.tasker1.task.applet.option.AppletOptionFactory
+
+/**
+ * @author Mengran 2022/12/25
+ */
+@Privileged
+object PrivilegedTaskManager : TaskManager<Long, XTaskDTO>() {
+
+    object Delegate : IRemoteTaskManager.Stub() {
+
+        private var initialized = false
+
+        override fun initialize(carriers: MutableList<XTaskDTO>) {
+            carriers.forEach {
+                enableResidentTask(it)
+            }
+            initialized = true
+        }
+
+        override fun isInitialized(): Boolean {
+            return initialized
+        }
+
+        override fun updateTask(previous: Long, updated: XTaskDTO) {
+            PrivilegedTaskManager.updateTask(previous, updated)
+        }
+
+        override fun removeTask(identifier: Long) {
+            PrivilegedTaskManager.removeTask(identifier)
+        }
+
+        override fun enableResidentTask(carrier: XTaskDTO) {
+            PrivilegedTaskManager.enableResidentTask(carrier)
+        }
+
+        override fun addOneshotTaskIfAbsent(carrier: XTaskDTO) {
+            PrivilegedTaskManager.addOneshotTaskIfAbsent(carrier)
+        }
+
+        override fun getSnapshotCount(identifier: Long): Int {
+            return PrivilegedTaskManager.getSnapshotCount(identifier)
+        }
+
+        override fun clearSnapshots(identifier: Long) {
+            PrivilegedTaskManager.clearSnapshots(identifier)
+        }
+
+        override fun clearLog(checksum: Long, snapshotId: String) {
+            PrivilegedTaskManager.clearLog(checksum, snapshotId)
+        }
+
+        override fun setOnTaskPausedListener(listener: IOnTaskPauseStateListener?) {
+            PrivilegedTaskManager.setOnTaskPausedStateChangedListener(
+                if (listener == null) null
+                else XTask.OnTaskPausedStateChangedListener { checksum ->
+                    listener.onTaskPauseStateChanged(checksum)
+                }
+            )
+        }
+
+        override fun getTaskPauseInfo(identifier: Long): LongArray {
+            return PrivilegedTaskManager.getTaskPauseInfo(identifier)
+        }
+
+        override fun getAllSnapshots(identifier: Long): Array<TaskSnapshot> {
+            return PrivilegedTaskManager.getAllSnapshots(identifier)
+        }
+
+    }
+
+    override fun asTask(carrier: XTaskDTO): XTask {
+        return carrier.toXTask(AppletOptionFactory, false)
+    }
+
+    override fun List<XTask>.indexOfTask(identifier: Long): Int {
+        return indexOfFirst {
+            it.checksum == identifier
+        }
+    }
+
+    override val XTaskDTO.identifier: Long get() = metadata.checksum
+
+}

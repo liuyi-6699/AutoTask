@@ -23,7 +23,7 @@
 -dontobfuscate
 -keepattributes LineNumberTable,SourceFile
 
--keep class top.xjunz.tasker.Preferences{
+-keep class top.xjunz.tasker1.Preferences{
    *;
 }
 
@@ -31,15 +31,15 @@
     public static *** inflate(...);
 }
 
--keep class top.xjunz.tasker.task.inspector.overlay.FloatingInspectorOverlay{
+-keep class top.xjunz.tasker1.task.inspector.overlay.FloatingInspectorOverlay{
  *;
 }
 
--keep class * extends top.xjunz.tasker.task.inspector.overlay.FloatingInspectorOverlay{
+-keep class * extends top.xjunz.tasker1.task.inspector.overlay.FloatingInspectorOverlay{
  *;
 }
 
--keepclassmembers class * extends top.xjunz.tasker.task.applet.option.registry.AppletOptionRegistry {
+-keepclassmembers class * extends top.xjunz.tasker1.task.applet.option.registry.AppletOptionRegistry {
     *;
 }
 
@@ -81,7 +81,7 @@
 -keepattributes InnerClasses # Needed for `getDeclaredClasses`.
 
 -if @kotlinx.serialization.Serializable class
-top.xjunz.tasker.engine.dto.XTaskDTO # <-- List serializable classes with named companions.
+top.xjunz.tasker1.engine.dto.XTaskDTO # <-- List serializable classes with named companions.
 {
     static **$* *;
 }
@@ -89,6 +89,6 @@ top.xjunz.tasker.engine.dto.XTaskDTO # <-- List serializable classes with named 
     static <1>$$serializer INSTANCE;
 }
 
--keepclassmembers,allowobfuscation class top.xjunz.tasker.premium.PremiumContext {
+-keepclassmembers,allowobfuscation class top.xjunz.tasker1.premium.PremiumContext {
     *;
 }

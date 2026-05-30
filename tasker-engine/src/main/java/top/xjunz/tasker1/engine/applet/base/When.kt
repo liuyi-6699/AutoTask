@@ -1,0 +1,32 @@
+/*
+ * Copyright (c) 2024 Mengran. All rights reserved.
+ */
+
+package top.xjunz.tasker1.engine.applet.base
+
+import top.xjunz.tasker1.engine.runtime.TaskRuntime
+
+/**
+ * @author Mengran 2022/08/11
+ */
+open class When : ControlFlow() {
+
+    override val minSize: Int = 1
+
+    override val requiredIndex: Int = 1
+
+    override fun staticCheckMyself(): Int {
+        if (requireParent().getOrNull(index + 1) == null) {
+            return StaticError.ERR_WHEN_NO_FELLOW
+        }
+        return super.staticCheckMyself()
+    }
+
+    override fun onPostApply(runtime: TaskRuntime) {
+        super.onPostApply(runtime)
+        runtime.ifSuccessful = runtime.isSuccessful
+        if (!runtime.isSuccessful) {
+            runtime.shouldStop = true
+        }
+    }
+}

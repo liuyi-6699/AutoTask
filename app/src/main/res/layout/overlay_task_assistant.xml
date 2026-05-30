@@ -5,7 +5,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <top.xjunz.tasker.ui.widget.FloatingDraggableLayout
+    <top.xjunz.tasker1.ui.widget.FloatingDraggableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone">
@@ -66,5 +66,5 @@
                 app:icon="@drawable/ic_baseline_open_in_new_24"
                 app:iconTint="?android:textColorPrimary" />
         </com.google.android.material.card.MaterialCardView>
-    </top.xjunz.tasker.ui.widget.FloatingDraggableLayout>
+    </top.xjunz.tasker1.ui.widget.FloatingDraggableLayout>
 </layout>
