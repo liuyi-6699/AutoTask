@@ -143,27 +143,16 @@ class MainViewModel : ViewModel(), ServiceController.ServiceStateListener {
             checkingForUpdates.setValueIfObserved(true)
             runCatching {
                 client.checkForUpdates()
-            }.onSuccess { response ->
-                if (response.status == HttpStatusCode.OK) {
-                    runCatching {
-                        Json.decodeFromString<UpdateInfo>(response.bodyAsText())
-                    }.onFailure {
-                        checkingForUpdatesError.setValueIfObserved(it.message)
-                    }.onSuccess {
-                        app.updateInfo.value = it
-                    }
+            }.onSuccess { updateInfo ->
+                if (updateInfo != null) {
+                    app.updateInfo.value = updateInfo
                 } else {
-                    checkingForUpdatesError.setValueIfObserved(
-                        R.string.format_request_failed.format(response.status)
-                    )
+                    checkingForUpdatesError.setValueIfObserved("检查更新失败")
                 }
             }.onFailure {
                 checkingForUpdatesError.value = R.string.format_request_failed.format(it.message)
             }
-            checkingForUpdates.setValueIfObserved(false)
         }
-    }
-
     override fun onStartBinding() {
         isServiceBinding.postValue(true)
     }

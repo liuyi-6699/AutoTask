@@ -12,6 +12,14 @@ import io.ktor.client.request.post
 import io.ktor.client.statement.HttpResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import io.ktor.client.statement.bodyAsText
+import io.ktor.http.HttpStatusCode
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
+import kotlinx.serialization.json.long
 
 /**
  * @author Mengran 2023/03/01
@@ -65,11 +73,37 @@ class Client {
         }
     }
 
-    suspend fun checkForUpdates(): HttpResponse {
+    suspend fun checkForUpdates(): UpdateInfo? {
         return withContext(Dispatchers.IO) {
-            httpClient.get("https://api.bq04.com/apps/latest/6404da310d81cc43daf6b431") {
-                parameter("api_token", "5823a317109145ad2d9257d8c81cb641")
-            }
+            runCatching {
+                val response = httpClient.get("https://api.github.com/repos/liuyi-6699/AutoTask/releases/latest")
+                if (response.status != HttpStatusCode.OK) {
+                    return@withContext null
+                }
+                val root = Json.parseToJsonElement(response.bodyAsText()).jsonObject
+                val assets = root["assets"]!!.jsonArray[0].jsonObject
+                val tagName = root["tag_name"]!!.jsonPrimitive.content
+                val version = tagName.removePrefix("v")
+                val body = root["body"]?.jsonPrimitive?.content.orEmpty()
+                val downloadUrl = assets["browser_download_url"]!!.jsonPrimitive.content
+                val size = assets["size"]!!.jsonPrimitive.long
+                val htmlUrl = root["html_url"]!!.jsonPrimitive.content
+                val name = root["name"]!!.jsonPrimitive.content
+
+                UpdateInfo(
+                    binary = UpdateInfo.Binary(size),
+                    build = root["tag_name"]?.jsonPrimitive?.content.orEmpty(),
+                    changelog = body,
+                    direct_install_url = downloadUrl,
+                    installUrl = downloadUrl,
+                    install_url = downloadUrl,
+                    name = name,
+                    update_url = htmlUrl,
+                    updated_at = 0L,
+                    version = version,
+                    versionShort = version
+                )
+            }.getOrNull()
         }
     }
 

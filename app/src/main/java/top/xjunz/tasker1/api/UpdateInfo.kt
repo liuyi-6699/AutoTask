@@ -30,7 +30,8 @@ data class UpdateInfo(
     )
 
     fun hasUpdates(): Boolean {
-        return (build.toIntOrNull() ?: -1) > BuildConfig.VERSION_CODE
+        // 对比GitHub Release的tag_name与当前版本名
+        return build != "v" + BuildConfig.VERSION_NAME
     }
 
     fun formatToString(): CharSequence {
